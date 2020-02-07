@@ -68,33 +68,49 @@ class Array
     #
     # This should remind you of the spaceship operator! Convenient :)
     def bubble_sort(&prc)
-        if prc
-            sorted = false
-            while !sorted
-                sorted = true
+        prc ||= Proc.new { |a, b| a <=> b }
 
-                (0...self.length - 1).each do |i|
-                    if prc.call(self[i],self[i+1]) == 1
-                       
-                        self[i], self[i+1] = self[i+1], self[i]
-                        sorted = false
-                    end
-                end
-            end
-        else
-            sorted = false
-            while !sorted
-                sorted = true
+        sorted = false
+        while !sorted
+            sorted = true
 
-                (0...self.length - 1).each do |i|
-                    if self[i] > self[i+1] 
-                        sorted = false
-                        self[i], self[i+1] = self[i+1], self[i]
-                    end
-                    i+=1
+            (0...self.length - 1).each do |i|
+                if prc.call(self[i], self[i + 1]) == 1
+                    self[i], self[i + 1] = self[i + 1], self[i]
+                    sorted = false
                 end
             end
         end
+
         self
+
+        # if prc
+        #     sorted = false
+        #     while !sorted
+        #         sorted = true
+
+        #         (0...self.length - 1).each do |i|
+        #             if prc.call(self[i],self[i+1]) == 1
+                       
+        #                 self[i], self[i+1] = self[i+1], self[i]
+        #                 sorted = false
+        #             end
+        #         end
+        #     end
+        # else
+        #     sorted = false
+        #     while !sorted
+        #         sorted = true
+
+        #         (0...self.length - 1).each do |i|
+        #             if self[i] > self[i+1] 
+        #                 sorted = false
+        #                 self[i], self[i+1] = self[i+1], self[i]
+        #             end
+        #             i+=1
+        #         end
+        #     end
+        # end
+        # self
     end
 end
