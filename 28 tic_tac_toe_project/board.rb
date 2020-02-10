@@ -1,18 +1,12 @@
 class Board
     attr_reader :board
 
-    def initialize
-        @board = [
-            ['-', '-', '-'],
-            ['-', '-', '-'],
-            ['-', '-', '-']
-        ]
+    def initialize(length)
+        @board = Array.new(length) {Array.new(length, '-')}
     end
 
     def empty?(row, col)
-        p "board  #{@board[row][col]}"
         @board[row][col] == '-'
-        
     end
 
     def place_mark(row, col, mark)
